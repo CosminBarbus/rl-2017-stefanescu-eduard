@@ -1,0 +1,9 @@
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\bin\Debug\Session1.exe.config
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\bin\Debug\Session1.exe
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\bin\Debug\Session1.pdb
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\obj\Debug\Interop.WMPLib.dll
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\obj\Debug\Session1.csproj.ResolveComReference.cache
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\obj\Debug\Session1.csproj.CoreCompileInputs.cache
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\obj\Debug\Session1.exe
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\obj\Debug\Session1.pdb
+C:\Users\Eduard\source\repos\iQuest-Homework\Session1\Session1\obj\Debug\Session1.csprojResolveAssemblyReference.cache

@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
-    class Animal
+    abstract class Animal
     {
-        public virtual string Name()
-        {
-            return "";
-        }
-        public virtual string Noise()
-        {
-            return "";
-        }
+        public abstract string Name();
+        public abstract string Noise();
     }
 }

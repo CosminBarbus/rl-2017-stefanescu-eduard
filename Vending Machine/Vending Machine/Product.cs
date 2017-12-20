@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductsStorage
+namespace Vending_Machine
 {
     class Product
     {

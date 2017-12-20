@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A9791F0-D614-4C85-9CD6-452E6960CFC3}</ProjectGuid>
+    <ProjectGuid>{5001AFE0-A018-4CCF-8055-9E318822A7FD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ProductsStorage</RootNamespace>
-    <AssemblyName>ProductsStorage</AssemblyName>
+    <RootNamespace>Vending_Machine</RootNamespace>
+    <AssemblyName>Vending Machine</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

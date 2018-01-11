@@ -22,5 +22,7 @@ namespace VendingMachine.Project
         }
 
         public int Size => _size;
+
+        public Product Product => _product;
     }
 }

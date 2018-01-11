@@ -18,5 +18,7 @@ namespace VendingMachine.Project
             _price = price;
             _category = category;
         }
+
+        public string Name => _name;
     }
 }

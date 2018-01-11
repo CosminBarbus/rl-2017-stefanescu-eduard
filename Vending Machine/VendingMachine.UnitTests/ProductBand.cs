@@ -49,5 +49,7 @@ namespace VendingMachine.UnitTests
                 return _products[0];
             return emptyProduct;
         }
+
+        public List<ContainableItem> Products => _products;
     }
 }

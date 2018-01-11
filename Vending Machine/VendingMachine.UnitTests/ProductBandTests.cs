@@ -105,7 +105,7 @@ namespace VendingMachine.UnitTests
             oreoBand.Add(oreoItem);
             oreo = oreoBand.GetFirstItem();
 
-            Assert.AreEqual(oreoProduct.Name, oreo.GetProduct.Name);
+            Assert.AreEqual(oreoProduct.Name, oreo.Product.Name);
         }
 
         [TestMethod]

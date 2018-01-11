@@ -23,6 +23,6 @@ namespace VendingMachine.UnitTests
 
         public int Size => _size;
 
-        public Product GetProduct => _product;
+        public Product Product => _product;
     }
 }

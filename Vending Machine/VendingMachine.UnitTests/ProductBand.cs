@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.UnitTests.Exceptions;
 
 namespace VendingMachine.UnitTests
 {
@@ -26,18 +27,20 @@ namespace VendingMachine.UnitTests
                 _bandSize -= containableItem.Size;
             }
             else
-                _bandSize = -1;
+                throw new BandIsFullException();
         }
 
         public void Remove(ContainableItem containableItem)
         {
+            if (_products.Count == 0)
+                throw new BandIsEmptyException();
             if (_products.Count > 0)
             {
                 _products.Remove(containableItem);
                 _bandSize += containableItem.Size;
             }
             else
-                _bandSize = 21;
+                throw new BandIsFullException();
         }
 
         public int Count() => _products.Count();

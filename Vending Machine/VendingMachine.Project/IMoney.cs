@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class Dispenser
+    interface IMoney
     {
-        public void Dispense(ProductBand productBand, ContainableItem containableItem) => productBand.Remove(containableItem);
+        string MoneyType();
+
+        double Amount
+        {
+            get;
+        }
     }
 }

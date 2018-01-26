@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.UnitTests
 {
-    class Dispenser
+    abstract class Coin : IMoney
     {
-        public void Dispense(ProductBand productBand, ContainableItem containableItem) => productBand.Remove(containableItem);
+        public abstract string Type();
+
+        public abstract double Amount { get; }
+        public string MoneyType() => "coins";
     }
 }

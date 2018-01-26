@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class CreateProducts
+    class ProductFactory
     {
         public static ContainableItem CreatePringlesProduct()
         {
@@ -14,7 +14,7 @@ namespace VendingMachine.Project
             ProductCategory pringlesCategory = new ProductCategory(categoryName: "Snacks",
                                                                    description: "Snacks with salt");
             Product pringlesProduct = new Product(name: "Pringles",
-                                                  price: 7.59,
+                                                  price: 7.9,
                                                   category: pringlesCategory);
             ProductPosition pringlesPosition = new ProductPosition(row: 2,
                                                                    column: 5);
@@ -29,7 +29,7 @@ namespace VendingMachine.Project
             ProductCategory snickersCategory = new ProductCategory(categoryName: "Chocolate",
                                                                    description: "Chocolate with caramel");
             Product snickersProduct = new Product(name: "Snickers",
-                                                  price: 2.55,
+                                                  price: 2.5,
                                                   category: snickersCategory);
             ProductPosition snickersPosition = new ProductPosition(row: 1,
                                                                    column: 1);
@@ -44,7 +44,7 @@ namespace VendingMachine.Project
             ProductCategory twixCategory = new ProductCategory(categoryName: "Chocolate",
                                                                    description: "Two bars of chocolate");
             Product twixProduct = new Product(name: "Twix",
-                                                  price: 3.05,
+                                                  price: 3,
                                                   category: twixCategory);
             ProductPosition twixPosition = new ProductPosition(row: 1,
                                                                column: 7);

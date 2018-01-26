@@ -20,5 +20,7 @@ namespace VendingMachine.UnitTests
         }
 
         public string Name => _name;
+
+        public double Price => _price;
     }
 }

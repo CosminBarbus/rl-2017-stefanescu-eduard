@@ -20,5 +20,7 @@ namespace VendingMachine.Project
         }
 
         public string Name => _name;
+
+        public double Price => _price;
     }
 }

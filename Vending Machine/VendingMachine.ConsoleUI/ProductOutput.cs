@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.Project;
 
 namespace VendingMachine.ConsoleUI
 {
@@ -18,14 +19,14 @@ namespace VendingMachine.ConsoleUI
 
         public static void DisplayProduct(ContainableItem containableItem)
         {
-            Console.WriteLine("\nName: {0}\nRow: {1}\nColumn: {2}\nSize: {3}\nPrice: {4}\nCategory name: {5}\nDescription: {6}",
-                              containableItem.GetProduct.Name,
-                              containableItem.GetPostion.Row,
-                              containableItem.GetPostion.Column,
+            Console.WriteLine("Name: {0}\nRow: {1}\nColumn: {2}\nSize: {3}\nPrice: {4}\nCategory name: {5}\nDescription: {6}",
+                              containableItem.Product.Name,
+                              containableItem.Position.Row,
+                              containableItem.Position.Column,
                               containableItem.Size,
-                              containableItem.GetProduct.Price,
-                              containableItem.GetProduct.Category.CategoryName,
-                              containableItem.GetProduct.Category.Description);
+                              containableItem.Product.Price,
+                              containableItem.Product.Category.CategoryName,
+                              containableItem.Product.Category.Description);
         }
     }
 }

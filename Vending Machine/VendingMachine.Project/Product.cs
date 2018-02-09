@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VendingMachine.Project
+﻿namespace VendingMachine.Project
 {
-    class Product
+    public class Product
     {
         private string _name;
-        private double _price;
+        private decimal _price;
         private ProductCategory _category;
 
-        public Product(string name, double price, ProductCategory category)
+        public Product(string name, decimal price, ProductCategory category)
         {
             _name = name;
             _price = price;
@@ -21,6 +15,8 @@ namespace VendingMachine.Project
 
         public string Name => _name;
 
-        public double Price => _price;
+        public decimal Price => _price;
+
+        public ProductCategory Category => _category;
     }
 }

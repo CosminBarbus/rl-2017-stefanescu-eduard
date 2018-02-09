@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.UnitTests.Exceptions
+namespace VendingMachine.Project.Exceptions
 {
-    class BandIsEmptyException : Exception
-    {
-    }
+    public class CardNotValidException : Exception { }
 }

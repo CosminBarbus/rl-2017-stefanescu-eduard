@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.UnitTests.Exceptions
+namespace VendingMachine.ConsoleUI.Exceptions
 {
-    class BandIsFullException : Exception
-    {
-    }
+    public class BandIsFullException : Exception { }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VendingMachine.Project
+﻿namespace VendingMachine.Project
 {
-    class ProductPosition
+    public class ProductPosition
     {
         private int _row;
         private int _column;
@@ -15,5 +9,9 @@ namespace VendingMachine.Project
             _row = row;
             _column = column;
         }
+
+        public int Row => _row;
+
+        public int Column => _column;
     }
 }

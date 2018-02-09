@@ -8,10 +8,10 @@ namespace VendingMachine.Project.Banknotes
 {
     class TenRon : Banknote
     {
-        private double _tenRon = 10;
+        private decimal _tenRon = 10;
         public override string Type() => "10 RON";
 
-        public override double Amount
+        public override decimal Amount
         {
             get { return _tenRon; }
         }

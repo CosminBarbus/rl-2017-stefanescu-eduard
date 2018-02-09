@@ -6,8 +6,28 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class Dispenser
+    public class Dispenser:IPaymentSubscriber
     {
-        public void Dispense(ProductBand productBand, ContainableItem containableItem) => productBand.Remove(containableItem);
+        private List<ProductBand> bands;
+
+        public Dispenser()
+        {
+            this.bands = new List<ProductBand>();
+        }
+        public void Dispense()
+        {
+
+        }
+        public void DispenseProduct(string productName)
+        {
+            // search product band
+            // remove from product band
+
+        }
+
+        public void Add(ProductBand pringlesBand)
+        {
+            this.bands.Add(pringlesBand);
+        }
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class ProductBand
+    public class ProductBand
     {
         private List<ContainableItem> _products;
         private int _bandSize = 20;
 
-        public ProductBand(List<ContainableItem> products)
+        public ProductBand()
         {
-            _products = products;
+            _products = new List<ContainableItem>();
         }
 
         public void Add(ContainableItem containableItem)
@@ -32,6 +32,16 @@ namespace VendingMachine.Project
                 _products.Remove(containableItem);
                 _bandSize += containableItem.Size;
             }
+        }
+
+        public decimal GetProductPrice(string productName)
+        {
+            ContainableItem containableItem = _products.
+                FirstOrDefault(x =>
+                x.Product.Name.Equals(productName, StringComparison.InvariantCultureIgnoreCase));
+            if (containableItem != null)
+                return containableItem.Product.Price;
+            throw new ArgumentException($"No product found with name {productName}");
         }
 
         public int Count() => _products.Count();

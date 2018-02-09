@@ -10,6 +10,6 @@ namespace VendingMachine.Project
     {
         public abstract string Type();
         public string MoneyType() => "coins";
-        public abstract double Amount { get; }
+        public abstract decimal Amount { get; }
     }
 }

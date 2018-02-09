@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class ProductFactory
+    public class ProductFactory
     {
         public static ContainableItem CreatePringlesProduct()
         {
-            ProductBand pringlesBand = new ProductBand(new List<ContainableItem>());
+            
             ProductCategory pringlesCategory = new ProductCategory(categoryName: "Snacks",
                                                                    description: "Snacks with salt");
             Product pringlesProduct = new Product(name: "Pringles",
-                                                  price: 7.9,
+                                                  price: 7.9m,
                                                   category: pringlesCategory);
             ProductPosition pringlesPosition = new ProductPosition(row: 2,
                                                                    column: 5);
@@ -25,11 +25,10 @@ namespace VendingMachine.Project
         }
         public static ContainableItem CreateSnickersProduct()
         {
-            ProductBand snickersBand = new ProductBand(new List<ContainableItem>());
             ProductCategory snickersCategory = new ProductCategory(categoryName: "Chocolate",
                                                                    description: "Chocolate with caramel");
             Product snickersProduct = new Product(name: "Snickers",
-                                                  price: 2.5,
+                                                  price: 2.5m,
                                                   category: snickersCategory);
             ProductPosition snickersPosition = new ProductPosition(row: 1,
                                                                    column: 1);
@@ -40,7 +39,7 @@ namespace VendingMachine.Project
         }
         public static ContainableItem CreateTwixProduct()
         {
-            ProductBand twixBand = new ProductBand(new List<ContainableItem>());
+           
             ProductCategory twixCategory = new ProductCategory(categoryName: "Chocolate",
                                                                    description: "Two bars of chocolate");
             Product twixProduct = new Product(name: "Twix",

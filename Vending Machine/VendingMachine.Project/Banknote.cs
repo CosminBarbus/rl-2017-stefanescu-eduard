@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    abstract class Banknote : IMoney
+    public abstract class Banknote : IMoney
     {
         public abstract string Type();
         public string MoneyType() => "banknotes";
-        public abstract double Amount { get; }
+        public abstract decimal Amount { get; }
     }
 }

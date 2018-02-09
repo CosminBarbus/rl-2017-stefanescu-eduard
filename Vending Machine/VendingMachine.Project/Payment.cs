@@ -1,39 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class Payment
+    public class PaymentTerminal
     {
-        private IMoney _iMoney;
-        private int _numberOfMoney;
-        private Dispenser _dispenser = new Dispenser();
+       private List<IPaymentSubscriber> _subscribers;
+        
 
-        public Payment(IMoney iMoney, int numberOfMoney)
+        public PaymentTerminal()
         {
-            _iMoney = iMoney;
-            _numberOfMoney = numberOfMoney;
+            _subscribers = new List<IPaymentSubscriber>();
         }
 
-        public double Pay(ProductBand productBand, ContainableItem containableItem)
+        public void Subscribe(IPaymentSubscriber subscriber)
         {
-            double totalAmount = 0;
-            if (_iMoney is Banknote || _iMoney is Coin)
-                totalAmount = _iMoney.Amount * _numberOfMoney;
-            else if (_iMoney is CreditCard)
-                totalAmount = _iMoney.Amount;
-            if (totalAmount > containableItem.Product.Price)
+            _subscribers.Add(subscriber);
+        }
+
+        public void Unsubscribe(IPaymentSubscriber subscriber)
+        {
+            _subscribers.Remove(subscriber);
+        }
+
+        private void Notify(string productName)
+        {
+            foreach (IPaymentSubscriber paymentSubscriber in _subscribers)
             {
-                _dispenser.Dispense(productBand, containableItem);
-                return Math.Floor((totalAmount - containableItem.Product.Price) * 100 + 0.5) / 100;
+                paymentSubscriber.DispenseProduct(productName);
             }
-            if (containableItem.Product.Price == totalAmount)
-                _dispenser.Dispense(productBand, containableItem);
-            return 0;
+
+            Console.WriteLine("");
         }
+
+        public decimal Pay(IMoney iMoney, int numberOfMoney, string productName)
+        {
+            var change = CalculateChange(productName);
+
+            if (IsEnoughMoney(containableItem))
+            {
+                Notify(containableItem.Product.Name);
+            }
+
+            return change;
+        }
+
+        private bool IsEnoughMoney(ContainableItem containableItem)
+        {
+            return CalculateTotalAmount() >= containableItem.Product.Price;
+        }
+
+        private decimal CalculateChange(string productName)
+        {
+            var totalAmount = CalculateTotalAmount();
+
+            decimal result;
+            if (totalAmount < containableItem.Product.Price)
+            {
+                result = totalAmount;
+            }
+            else
+            {
+                result = Math.Floor((totalAmount - containableItem.Product.Price) * 100 + 0.5m) / 100;
+            }
+
+            return result;
+        }
+
+        private decimal CalculateTotalAmount(IMoney iMoney, int numberOfMoney)
+        {
+            decimal totalAmount = 0;
+            if (iMoney is Banknote || iMoney is Coin)
+                totalAmount = iMoney.Amount * numberOfMoney;
+            else if (iMoney is CreditCard)
+                totalAmount = iMoney.Amount;
+            return totalAmount;
+        }
+
+        public void Pay(ProductBand pringlesBand, string productName)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public interface IPaymentSubscriber
+    {
+        void DispenseProduct(string productName);
     }
 }

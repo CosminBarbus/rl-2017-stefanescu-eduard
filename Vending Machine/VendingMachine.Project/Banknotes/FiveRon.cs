@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project.Banknotes
 {
-    class FiveRon : Banknote
+    public class FiveRon : Banknote
     {
-        private double _fiveRon = 5;
+        private decimal _fiveRon = 5;
         public override string Type() => "5 RON";
 
-        public override double Amount
+        public override decimal Amount
         {
             get { return _fiveRon; }
         }

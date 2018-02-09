@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class ProductPosition
+    public class ProductPosition
     {
         private int _row;
         private int _column;

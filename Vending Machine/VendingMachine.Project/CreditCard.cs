@@ -8,10 +8,10 @@ namespace VendingMachine.Project
 {
     class CreditCard : IMoney
     {
-        private double _cardAmount;
+        private decimal _cardAmount;
         public string MoneyType() => "credit card";
 
-        public double Amount
+        public decimal Amount
         {
             get { return _cardAmount; }
             set { _cardAmount = value; }

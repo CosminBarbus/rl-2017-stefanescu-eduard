@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    class ProductCategory
+    public class ProductCategory
     {
         private string _categoryName;
         private string _description;

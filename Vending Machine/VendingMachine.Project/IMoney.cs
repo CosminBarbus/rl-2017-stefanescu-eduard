@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    interface IMoney
+    public interface IMoney
     {
         string MoneyType();
 
-        double Amount
+        decimal Amount
         {
             get;
         }

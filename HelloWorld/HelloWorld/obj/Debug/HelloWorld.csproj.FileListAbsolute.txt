@@ -1,9 +1,0 @@
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\obj\Debug\HelloWorld.csprojResolveAssemblyReference.cache
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\obj\Debug\HelloWorld.csproj.CoreCompileInputs.cache
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\bin\Debug\HelloWorld.exe.config
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\bin\Debug\HelloWorld.exe
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\bin\Debug\HelloWorld.pdb
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\obj\Debug\Interop.WMPLib.dll
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\obj\Debug\HelloWorld.csproj.ResolveComReference.cache
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\obj\Debug\HelloWorld.exe
-C:\Users\Eduard\Documents\iQuest Homework\HelloWorld\HelloWorld\obj\Debug\HelloWorld.pdb

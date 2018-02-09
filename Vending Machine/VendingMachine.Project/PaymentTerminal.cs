@@ -32,25 +32,26 @@ namespace VendingMachine.Project
             }
         }
 
-        public decimal Pay(IMoney iMoney, int numberOfMoney, string productName)
+        public decimal Pay(IPayment payment, int numberOfMoney, string productName)
         {
-            ContainableItem containableItem = ProductDepot.GetProductByName(productName);
+            ContainableItem containableItem = ProductBand.Instance().GetByName(productName);
             if (_internalAccountant.IsEnoughMoney(containableItem,
-                _internalAccountant.TotalAmount(iMoney, numberOfMoney)))
+                _internalAccountant.TotalAmount(payment, numberOfMoney)))
             {
                 Notify(containableItem);
-                if (iMoney is Coin)
-                {
-                    return _internalAccountant.CalculateChange(containableItem.Product.Price,
-                        _internalAccountant.TotalAmount(iMoney, numberOfMoney));
-                }
-                if (iMoney is CreditCard)
-                {
-                    iMoney.Amount -= containableItem.Product.Price;
-                    return 0;
-                }
-                if (iMoney is Banknote)
-                    return 0;
+
+                return payment.GetChange();
+                //if (payment is Coin)
+                //{
+                //    return _internalAccountant.CalculateChange(containableItem.Product.Price, payment, numberOfMoney);
+                //}
+                //if (payment is CreditCard)
+                //{
+                //    payment.Amount -= containableItem.Product.Price;
+                //    return 0;
+                //}
+                //if (payment is Banknote)
+                //    return 0;
             }
             throw new ArgumentException("You need to enter more money.");
         }

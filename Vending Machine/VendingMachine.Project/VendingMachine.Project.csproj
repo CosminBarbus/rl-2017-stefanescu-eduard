@@ -81,7 +81,6 @@
     <Compile Include="IMoney.cs" />
     <Compile Include="InternalAccountant.cs" />
     <Compile Include="PaymentTerminal.cs" />
-    <Compile Include="ProductDepot.cs" />
     <Compile Include="ProductFactory.cs" />
     <Compile Include="Dispenser.cs" />
     <Compile Include="Product.cs" />

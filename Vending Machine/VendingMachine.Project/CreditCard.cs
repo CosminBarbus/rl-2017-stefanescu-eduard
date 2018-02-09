@@ -2,7 +2,7 @@
 
 namespace VendingMachine.Project
 {
-    public class CreditCard : IMoney
+    public class CreditCard : IPayment
     {
         private string _creditCreditCardNumber;
 
@@ -46,6 +46,11 @@ namespace VendingMachine.Project
         {
             get => CreditCardDatabase.GetAccountBalance(_creditCreditCardNumber);
             set => CreditCardDatabase.SetAccountBalance(_creditCreditCardNumber, value);
+        }
+
+        public decimal GetChange()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

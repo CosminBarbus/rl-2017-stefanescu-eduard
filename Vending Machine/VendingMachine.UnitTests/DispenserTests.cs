@@ -26,7 +26,7 @@ namespace VendingMachine.UnitTests
         {
             skittlesBand.Add(skittlesItem);
             skittlesBand.Add(skittlesItem);
-            dispenser.Add(skittlesBand);
+            
             dispenser.Dispense(skittlesItem);
 
             Assert.AreEqual(1, skittlesBand.Count());
@@ -35,7 +35,7 @@ namespace VendingMachine.UnitTests
         [TestMethod]
         public void Dispense_DispenseOneProductBandIsEmpty_Failed()
         {
-            dispenser.Add(skittlesBand);
+            
 
             Assert.ThrowsException<BandIsEmptyException>(() => dispenser.Dispense(skittlesItem));
         }

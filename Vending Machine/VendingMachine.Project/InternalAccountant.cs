@@ -4,18 +4,19 @@ namespace VendingMachine.Project
 {
     class InternalAccountant
     {
-        public decimal TotalAmount(IMoney iMoney, int numberOfMoney)
+        public decimal TotalAmount(IPayment iPayment, int numberOfMoney)
         {
             decimal totalAmount = 0;
-            if (iMoney is Banknote || iMoney is Coin)
-                totalAmount = iMoney.Amount * numberOfMoney;
-            else if (iMoney is CreditCard)
-                totalAmount = iMoney.Amount;
+            if (iPayment is Banknote || iPayment is Coin)
+                totalAmount = iPayment.Amount * numberOfMoney;
+            else if (iPayment is CreditCard)
+                totalAmount = iPayment.Amount;
             return totalAmount;
         }
 
-        public decimal CalculateChange(decimal productPrice, decimal totalAmount)
+        public decimal CalculateChange(decimal productPrice, IPayment payment, int numberOfMoney)
         {
+            var totalAmount = TotalAmount(payment, numberOfMoney);
             if (totalAmount > productPrice)
                 return Math.Floor((totalAmount - productPrice) * 100 + 0.5m) / 100;
             return 0;
@@ -27,5 +28,7 @@ namespace VendingMachine.Project
                 return true;
             return false;
         }
+
+        
     }
 }

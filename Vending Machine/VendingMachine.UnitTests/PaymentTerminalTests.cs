@@ -24,8 +24,8 @@ namespace VendingMachine.UnitTests
 
             twixItem = ProductFactory.CreateTwixProduct();
             twixBand.Add(twixItem);
-            ProductDepot.AddProductInDepot(twixItem);
-            dispenser.Add(twixBand);
+            ProductBand.Instance().Add(twixItem);
+           
             paymentTerminal.Attach(dispenser);
         }
 

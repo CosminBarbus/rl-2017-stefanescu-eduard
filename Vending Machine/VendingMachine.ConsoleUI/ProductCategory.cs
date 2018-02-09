@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.Project
+namespace VendingMachine.ConsoleUI
 {
     class ProductCategory
     {
@@ -13,8 +13,12 @@ namespace VendingMachine.Project
 
         public ProductCategory(string categoryName, string description)
         {
-            _categoryName = categoryName;
-            _description = description;
+            this._categoryName = categoryName;
+            this._description = description;
         }
+
+        public string CategoryName => _categoryName;
+
+        public string Description => _description;
     }
 }

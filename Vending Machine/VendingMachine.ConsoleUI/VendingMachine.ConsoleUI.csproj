@@ -45,8 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainableItem.cs" />
     <Compile Include="Exceptions\BandIsEmptyException.cs" />
     <Compile Include="Exceptions\BandIsFullException.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="ProductBand.cs" />
+    <Compile Include="ProductCategory.cs" />
+    <Compile Include="ProductOutput.cs" />
+    <Compile Include="ProductPosition.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,12 +63,6 @@
   <ItemGroup>
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.Common.dll" />
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VendingMachine.Project\VendingMachine.Project.csproj">
-      <Project>{910bca41-5ec7-43ee-bb2d-9828a10544d5}</Project>
-      <Name>VendingMachine.Project</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

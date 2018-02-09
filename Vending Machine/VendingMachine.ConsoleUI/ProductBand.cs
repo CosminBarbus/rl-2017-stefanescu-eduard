@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.ConsoleUI.Exceptions;
 
-namespace VendingMachine.Project
+namespace VendingMachine.ConsoleUI
 {
     class ProductBand
     {
@@ -13,7 +14,7 @@ namespace VendingMachine.Project
 
         public ProductBand(List<ContainableItem> products)
         {
-            _products = products;
+            this._products = products;
         }
 
         public void Add(ContainableItem containableItem)
@@ -22,7 +23,10 @@ namespace VendingMachine.Project
             {
                 _products.Add(containableItem);
                 _bandSize -= containableItem.Size;
+                Console.WriteLine("{0} product was added successfully!", containableItem.GetProduct.Name);
             }
+            else
+                throw new BandIsFullException();
         }
 
         public void Remove(ContainableItem containableItem)
@@ -31,19 +35,19 @@ namespace VendingMachine.Project
             {
                 _products.Remove(containableItem);
                 _bandSize += containableItem.Size;
+                Console.WriteLine("{0} product was removed successfully!", containableItem.GetProduct.Name);
             }
+            else
+                throw new BandIsEmptyException("remove");
         }
 
         public int Count() => _products.Count();
 
         public ContainableItem GetFirstItem()
         {
-            ContainableItem emptyProduct = new ContainableItem();
             if (_products.Count > 0)
                 return _products[0];
-            return emptyProduct;
+            throw new BandIsEmptyException("get");
         }
-
-        public List<ContainableItem> Products => _products;
     }
 }

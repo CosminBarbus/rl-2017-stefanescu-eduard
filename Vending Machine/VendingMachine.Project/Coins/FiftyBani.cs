@@ -8,13 +8,13 @@ namespace VendingMachine.Project.Coins
 {
     class FiftyBani : Coin
     {
-        private decimal _fiftyBani = 0.5m;
+        private double _fiftyBani = 0.50;
         public override string Type()
         {
             return "50 bani";
         }
 
-        public override decimal Amount
+        public override double Amount
         {
             get { return _fiftyBani; }
         }

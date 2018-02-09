@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.Project
+namespace VendingMachine.ConsoleUI
 {
     class ProductPosition
     {
@@ -15,5 +15,9 @@ namespace VendingMachine.Project
             _row = row;
             _column = column;
         }
+
+        public int Row => _row;
+
+        public int Column => _column;
     }
 }

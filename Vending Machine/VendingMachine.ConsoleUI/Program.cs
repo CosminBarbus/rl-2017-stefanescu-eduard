@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
-using VendingMachine.Project;
-using VendingMachine.Project.Banknotes;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using VendingMachine.ConsoleUI.Exceptions;
 
 namespace VendingMachine.ConsoleUI
 {
@@ -8,22 +11,34 @@ namespace VendingMachine.ConsoleUI
     {
         static void Main()
         {
-            ProductBand pringlesBand = new ProductBand();
-            LoadPringles(pringlesBand);
-            Dispenser dispenser = new Dispenser();
-            dispenser.Add(pringlesBand);
+            ProductBand snickersBand = new ProductBand(new List<ContainableItem>());
+            ContainableItem snickers = new ContainableItem();
+            try
+            {
+                snickers.ReadProductCharacteristics();
+                snickersBand.Add(snickers);
+                snickersBand.Add(snickers);
+                ProductOutput.DisplayCount(snickersBand);
+                snickersBand.Remove(snickers);
+                ProductOutput.DisplayCount(snickersBand);
 
-            PaymentTerminal paymentTerminal = new PaymentTerminal();
-            paymentTerminal.Subscribe(dispenser);
+                ContainableItem snickersItem = snickersBand.GetFirstItem();
+                ProductOutput.DisplayProduct(snickersItem);
+            }
+            catch (BandIsFullException bandIsFull)
+            {
+                Console.WriteLine(bandIsFull.Message);
+            }
+            catch (BandIsEmptyException bandIsEmpty)
+            {
+                bandIsEmpty.DisplayException();
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("You enter a wrong value! Press any key and try again!");
+            }
 
-            //
-            IMoney fiveRon = new FiveRon();
-            paymentTerminal.Pay(fiveRon,1, "pringles");
-        }
-
-        private static void LoadPringles(ProductBand pringlesBand)
-        {
-            pringlesBand.Add(ProductFactory.CreatePringlesProduct());
+            Console.ReadKey();
         }
     }
 }

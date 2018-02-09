@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.Project
 {
-    public class ContainableItem
+    class ContainableItem
     {
         private int _size;
         private Product _product;

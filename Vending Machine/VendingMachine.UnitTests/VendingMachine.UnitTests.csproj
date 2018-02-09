@@ -48,32 +48,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banknote.cs" />
-    <Compile Include="Banknotes\FiveRon.cs" />
-    <Compile Include="Banknotes\OneRon.cs" />
-    <Compile Include="Banknotes\TenRon.cs" />
-    <Compile Include="Coin.cs" />
-    <Compile Include="Coins\FiftyBani.cs" />
-    <Compile Include="Coins\TenBani.cs" />
-    <Compile Include="ContainableItem.cs" />
-    <Compile Include="CreditCard.cs" />
-    <Compile Include="Dispenser.cs" />
     <Compile Include="DispenserTests.cs" />
-    <Compile Include="Exceptions\BandIsEmptyException.cs" />
-    <Compile Include="Exceptions\BandIsFullException.cs" />
-    <Compile Include="Exceptions\InsufficientMoneyException.cs" />
-    <Compile Include="IMoney.cs" />
-    <Compile Include="Payment.cs" />
-    <Compile Include="PaymentTests.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductBand.cs" />
-    <Compile Include="ProductCategory.cs" />
+    <Compile Include="PaymentTerminalTests.cs" />
     <Compile Include="ProductBandTests.cs" />
-    <Compile Include="ProductPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.Project\VendingMachine.Project.csproj">
+      <Project>{910bca41-5ec7-43ee-bb2d-9828a10544d5}</Project>
+      <Name>VendingMachine.Project</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

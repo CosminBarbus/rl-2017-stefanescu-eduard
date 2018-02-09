@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VendingMachine.Project.Coins
+﻿namespace VendingMachine.Project.Coins
 {
-    class TenBani : Coin
+    public class TenBani : Coin
     {
-        private double _tenBani = 0.10;
-        public override string Type()
-        {
-            return "10 bani";
-        }
+        private decimal _tenBani = 0.1m;
 
-        public override double Amount
+        public override decimal Amount
         {
             get { return _tenBani; }
+            set { }
         }
     }
 }

@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.UnitTests.Exceptions
+namespace VendingMachine.Project.Exceptions
 {
-    class InsufficientMoneyException : Exception
-    {
-    }
+    public class CardNotFoundException : Exception { }
 }

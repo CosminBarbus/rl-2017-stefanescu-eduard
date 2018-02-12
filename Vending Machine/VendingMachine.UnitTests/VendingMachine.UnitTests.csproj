@@ -48,16 +48,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContainableItem.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductBand.cs" />
-    <Compile Include="ProductCategory.cs" />
+    <Compile Include="DispenserTests.cs" />
+    <Compile Include="PaymentTerminalTests.cs" />
     <Compile Include="ProductBandTests.cs" />
-    <Compile Include="ProductPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VendingMachine.Project\VendingMachine.Project.csproj">
+      <Project>{910bca41-5ec7-43ee-bb2d-9828a10544d5}</Project>
+      <Name>VendingMachine.Project</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

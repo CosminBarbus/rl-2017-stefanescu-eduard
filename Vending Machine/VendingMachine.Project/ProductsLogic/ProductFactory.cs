@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Project
+﻿namespace VendingMachine.Project.ProductsLogic
 {
     public static class ProductFactory
     {
@@ -37,7 +37,7 @@
             var twixCategory = new ProductCategory(categoryName: "Chocolate",
                                                    description: "Two bars of chocolate");
             var twixProduct = new Product(name: "Twix",
-                                          price: 3,
+                                          price: 3m,
                                           category: twixCategory);
             var twixPosition = new ProductPosition(row: 1,
                                                    column: 7);
@@ -49,10 +49,10 @@
 
         public static ContainableItem CreateSkittlesProduct()
         {
-            var skittlesCategory = new ProductCategory(categoryName: "Biscuits",
-                                                       description: "Biscuits with cream");
-            var skittlesProduct = new Product(name: "Oreo",
-                                              price: 5.59m,
+            var skittlesCategory = new ProductCategory(categoryName: "Candies",
+                                                       description: "Colored candies");
+            var skittlesProduct = new Product(name: "Skittles",
+                                              price: 7.99m,
                                               category: skittlesCategory);
             var skittlesPosition = new ProductPosition(row: 2,
                                                        column: 5);

@@ -1,9 +1,8 @@
 ﻿using System;
-using VendingMachine.Project;
-using VendingMachine.ConsoleUI.Exceptions;
-using VendingMachine.Project.Banknotes;
-using VendingMachine.Project.Coins;
 using VendingMachine.Project.Exceptions;
+using VendingMachine.Project.PaymentLogic;
+using VendingMachine.Project.ProductsLogic;
+using VendingMachine.Project.ReportsLogic;
 
 namespace VendingMachine.ConsoleUI
 {
@@ -12,13 +11,14 @@ namespace VendingMachine.ConsoleUI
         static void Main()
         {
             var paymentTerminal = new PaymentTerminal();
+            var reportRepository = new ReportRepository();
             try
             {
                 // Vending Machine Out Of Service
                 var pringlesItem = ProductFactory.CreatePringlesProduct();
-                ProductBand.Instance().Add(pringlesItem);
+                ProductBand.Instance.Add(pringlesItem);
                 var dispenser = new Dispenser();
-                paymentTerminal.Attach(dispenser);
+                paymentTerminal.Subscribe(dispenser);
             }
             catch (Exception exception)
             {
@@ -34,14 +34,31 @@ namespace VendingMachine.ConsoleUI
             }
             catch (Exception exception)
             {
-                if (exception is FormatException)
-                    Console.WriteLine("You entered a wrong value! Press any key and try again!");
                 if (exception is CardNotValidException)
                     Console.WriteLine("This credit card is not valid! Try another payment method.");
                 if (exception is CardNotFoundException)
                     Console.WriteLine("Card was not found! Payment canceled!");
                 if (exception is BandIsEmptyException)
                     Console.WriteLine("Band is empty! You can't {0} any item!", exception.Message);
+                if (exception is ProductNotFoundException)
+                    Console.WriteLine("The product was not found!");
+            }
+
+            try
+            {
+                // Analyst Created a Report for february month
+                var februaryStartDate = new DateTime(2018, 02, 01);
+                var februaryEndDate = new DateTime(2018, 02, 28);
+                var februarySales = SalesDatabase.Instance.GetSalesByDate(februaryStartDate, februaryEndDate);
+                var report = new Report("FebruaryReport.csv", februarySales);
+                reportRepository.AddReport(report);
+            }
+            catch (Exception exception)
+            {
+                if (exception is ReportNotFoundException)
+                    Console.WriteLine("Report was not found!");
+                if (exception is SalesNotFoundException)
+                    Console.WriteLine("Sales were not found!");
             }
 
             Console.ReadKey();

@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Project.Coins
+﻿namespace VendingMachine.Project.PaymentLogic.Coins
 {
     public class TenBani : Coin
     {
@@ -6,7 +6,7 @@
 
         public override decimal Amount
         {
-            get { return _tenBani; }
+            get => _tenBani;
             set { }
         }
     }

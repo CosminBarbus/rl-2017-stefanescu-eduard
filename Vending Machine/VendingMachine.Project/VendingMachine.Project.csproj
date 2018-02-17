@@ -63,36 +63,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreditCardDatabase.cs" />
-    <Compile Include="Banknote.cs" />
-    <Compile Include="Banknotes\FiveRon.cs" />
-    <Compile Include="Banknotes\OneRon.cs" />
-    <Compile Include="Banknotes\TenRon.cs" />
-    <Compile Include="Coin.cs" />
-    <Compile Include="Coins\FiftyBani.cs" />
-    <Compile Include="Coins\TenBani.cs" />
-    <Compile Include="ContainableItem.cs" />
-    <Compile Include="CreditCard.cs" />
+    <Compile Include="Exceptions\ProductNotFoundException.cs" />
+    <Compile Include="PaymentLogic\CreditCardDatabase.cs" />
+    <Compile Include="PaymentLogic\Banknote.cs" />
+    <Compile Include="PaymentLogic\Banknotes\FiveRon.cs" />
+    <Compile Include="PaymentLogic\Banknotes\OneRon.cs" />
+    <Compile Include="PaymentLogic\Banknotes\TenRon.cs" />
+    <Compile Include="PaymentLogic\Coin.cs" />
+    <Compile Include="PaymentLogic\Coins\FiftyBani.cs" />
+    <Compile Include="PaymentLogic\Coins\TenBani.cs" />
+    <Compile Include="ProductsLogic\ContainableItem.cs" />
+    <Compile Include="PaymentLogic\CreditCard.cs" />
     <Compile Include="Exceptions\BandIsEmptyException.cs" />
     <Compile Include="Exceptions\BandIsFullException.cs" />
     <Compile Include="Exceptions\CardNotFoundException.cs" />
     <Compile Include="Exceptions\CardNotValidException.cs" />
-    <Compile Include="IDispenser.cs" />
-    <Compile Include="IMoney.cs" />
-    <Compile Include="InternalAccountant.cs" />
-    <Compile Include="PaymentTerminal.cs" />
-    <Compile Include="ProductFactory.cs" />
-    <Compile Include="Dispenser.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductBand.cs" />
-    <Compile Include="ProductCategory.cs" />
-    <Compile Include="ProductPosition.cs" />
+    <Compile Include="Exceptions\InsufficientMoneyException.cs" />
+    <Compile Include="Exceptions\ReportNotFoundException.cs" />
+    <Compile Include="Interfaces\IDispenser.cs" />
+    <Compile Include="Interfaces\IPayment.cs" />
+    <Compile Include="PaymentLogic\InternalAccountant.cs" />
+    <Compile Include="PaymentLogic\PaymentTerminal.cs" />
+    <Compile Include="ProductsLogic\ProductFactory.cs" />
+    <Compile Include="ProductsLogic\Dispenser.cs" />
+    <Compile Include="ProductsLogic\Product.cs" />
+    <Compile Include="ProductsLogic\ProductBand.cs" />
+    <Compile Include="ProductsLogic\ProductCategory.cs" />
+    <Compile Include="ProductsLogic\ProductPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ReportsLogic\ReportRepository.cs" />
+    <Compile Include="Exceptions\SalesNotFoundException.cs" />
+    <Compile Include="ReportsLogic\SalesDatabase.cs" />
+    <Compile Include="ReportsLogic\Report.cs" />
+    <Compile Include="ReportsLogic\Sale.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

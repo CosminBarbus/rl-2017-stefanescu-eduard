@@ -1,40 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using VendingMachine.ConsoleUI.Exceptions;
+using VendingMachine.Project.Exceptions;
 
-namespace VendingMachine.Project
+namespace VendingMachine.Project.ProductsLogic
 {
     public class ProductBand
     {
-        private List<ContainableItem> _products;
+        private readonly List<ContainableItem> _products;
         private int _bandSize = 20;
-
 
         private static ProductBand _instance;
 
-        // Lock synchronization object
+        private static readonly object SyncLock = new object();
 
-        private static object syncLock = new object();
-
-        public static ProductBand Instance()
-        {
-            if (_instance == null)
-            {
-                lock (syncLock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new ProductBand();
-                    }
-                }
-            }
-
-            return _instance;
-        }
-
-        public ProductBand()
+        private ProductBand()
         {
             _products = new List<ContainableItem>();
+        }
+
+        public static ProductBand Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    lock (SyncLock)
+                        if (_instance == null)
+                            _instance = new ProductBand();
+
+                return _instance;
+            }
         }
 
         public void Add(ContainableItem containableItem)
@@ -66,17 +60,19 @@ namespace VendingMachine.Project
             throw new BandIsEmptyException("get");
         }
 
+        public ContainableItem GetByName(string productName)
+        {
+            foreach (var containableItem in _products)
+                if (string.Equals(containableItem.Product.Name, productName, StringComparison.OrdinalIgnoreCase))
+                    return containableItem;
+
+            throw new ProductNotFoundException();
+        }
+
         public int Count() => _products.Count;
 
         public int BandSize => _bandSize;
 
-        public ContainableItem GetByName(string productName)
-        {
-            foreach (ContainableItem containableItem in _products)
-                if (String.Equals(containableItem.Product.Name, productName, StringComparison.OrdinalIgnoreCase))
-                    return containableItem;
-
-            throw new ArgumentException("The product was not found in depot");
-        }
+        public IEnumerable<ContainableItem> Products => new List<ContainableItem>(_products);
     }
 }

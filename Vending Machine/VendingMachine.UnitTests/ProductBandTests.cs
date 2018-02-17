@@ -1,115 +1,131 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VendingMachine.ConsoleUI.Exceptions;
-using VendingMachine.Project;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using VendingMachine.Project.Exceptions;
+using VendingMachine.Project.ProductsLogic;
 
 namespace VendingMachine.UnitTests
 {
     [TestClass]
     public class ProductBandTest
     {
-        private ContainableItem oreoItem;
-        private ProductBand oreoBand;
+        private ContainableItem _oreoItem;
+        private ProductBand _oreoBand;
 
         [TestInitialize]
         public void InitializeConstructors()
         {
-            oreoItem = ProductFactory.CreateOreoItem();
-            oreoBand = new ProductBand();
+            _oreoItem = ProductFactory.CreateOreoItem();
+            _oreoBand = ProductBand.Instance;
+        }
+
+        [TestCleanup]
+        public void CleanupProductBand()
+        {
+            foreach (var product in _oreoBand.Products)
+                _oreoBand.Remove(product);
         }
 
         [TestMethod]
         public void Add_AddOneProduct_Successfully()
         {
-            oreoBand.Add(oreoItem);
+            _oreoBand.Add(_oreoItem);
 
-            Assert.AreEqual(1, oreoBand.Count());
+            Assert.AreEqual(1, _oreoBand.Count());
         }
 
         [TestMethod]
         public void Add_AddProductsUntillBandIsFull_BandSizeIsZero()
         {
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
 
-            Assert.AreEqual(0, oreoBand.BandSize);
+            Assert.AreEqual(0, _oreoBand.BandSize);
         }
 
         [TestMethod]
         public void Add_AddProductsOverBandSize_ThrowBandIsFullException()
         {
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
 
-            Assert.ThrowsException<BandIsFullException>(() => oreoBand.Add(oreoItem));
+            Assert.ThrowsException<BandIsFullException>(() => _oreoBand.Add(_oreoItem));
         }
 
         [TestMethod]
         public void Remove_BandHaveTwoProductsRemoveOneProduct_Successfully()
         {
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Remove(oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Remove(_oreoItem);
 
-            Assert.AreEqual(1, oreoBand.Count());
+            Assert.AreEqual(1, _oreoBand.Count());
         }
 
         [TestMethod]
         public void Remove_WhenBandIsFullRemoveAllProducts_Successfully()
         {
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Remove(oreoItem);
-            oreoBand.Remove(oreoItem);
-            oreoBand.Remove(oreoItem);
-            oreoBand.Remove(oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Remove(_oreoItem);
+            _oreoBand.Remove(_oreoItem);
+            _oreoBand.Remove(_oreoItem);
+            _oreoBand.Remove(_oreoItem);
 
-            Assert.AreEqual(0, oreoBand.Count());
+            Assert.AreEqual(0, _oreoBand.Count());
         }
 
         [TestMethod]
         public void Remove_RemoveOneProductWhenBandIsEmpty_ThrowBandIsEmptyException()
         {
-            Assert.ThrowsException<BandIsEmptyException>(() => oreoBand.Remove(oreoItem));
+            Assert.ThrowsException<BandIsEmptyException>(() => _oreoBand.Remove(_oreoItem));
         }
 
         [TestMethod]
         public void Count_AddThreeProducts_CountReturnsThree()
         {
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
-            oreoBand.Add(oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
+            _oreoBand.Add(_oreoItem);
 
-            Assert.AreEqual(3, oreoBand.Count());
+            Assert.AreEqual(3, _oreoBand.Count());
         }
 
         [TestMethod]
         public void GetFirstItem_GetOneProductWithSameName_Successfully()
         {
-            ContainableItem oreo = new ContainableItem();
+            _oreoBand.Add(_oreoItem);
+            var oreo = _oreoBand.GetFirstItem();
 
-            oreoBand.Add(oreoItem);
-            oreo = oreoBand.GetFirstItem();
-
-            Assert.AreEqual(oreoItem.Product.Name, oreo.Product.Name);
+            Assert.AreEqual(_oreoItem.Product.Name, oreo.Product.Name);
         }
 
         [TestMethod]
         public void GetFirstItem_GetOneProductWithDifferentName_Failed()
         {
-            ContainableItem skittles = new ContainableItem();
-
-            oreoBand.Add(oreoItem);
-            skittles = oreoBand.GetFirstItem();
+            _oreoBand.Add(_oreoItem);
+            var skittles = _oreoBand.GetFirstItem();
 
             Assert.AreNotEqual("Skittles", skittles.Product.Name);
+        }
+
+        [TestMethod]
+        public void GetByName_GetOreoItemByName_Successfully()
+        {
+            _oreoBand.Add(_oreoItem);
+            var oreo = _oreoBand.GetByName("Oreo");
+
+            Assert.AreEqual("Oreo", oreo.Product.Name);
+        }
+
+        [TestMethod]
+        public void GetByName_GetOreoItemByNameWhenBandIsEmpty_ThrowProductNotFoundException()
+        {
+            Assert.ThrowsException<ProductNotFoundException>(() => _oreoBand.GetByName("Oreo"));
         }
     }
 }

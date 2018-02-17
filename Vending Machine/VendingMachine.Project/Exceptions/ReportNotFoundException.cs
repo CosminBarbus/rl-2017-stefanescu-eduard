@@ -2,5 +2,5 @@
 
 namespace VendingMachine.Project.Exceptions
 {
-    public class BandIsFullException : Exception { }
+    public class ReportNotFoundException : Exception { }
 }

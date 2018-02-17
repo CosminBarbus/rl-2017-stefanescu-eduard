@@ -1,4 +1,5 @@
-﻿namespace VendingMachine.FormUI
+﻿#pragma warning disable 169
+namespace VendingMachine.FormUI
 {
     partial class VendingMachineForm
     {

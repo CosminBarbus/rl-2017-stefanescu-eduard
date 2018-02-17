@@ -1,43 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VendingMachine.ConsoleUI.Exceptions;
-using VendingMachine.Project;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using VendingMachine.Project.Exceptions;
+using VendingMachine.Project.ProductsLogic;
 
 namespace VendingMachine.UnitTests
 {
     [TestClass]
     public class DispenserTests
     {
-        private ContainableItem skittlesItem;
-        private ProductBand skittlesBand;
-        private Dispenser dispenser;
+        private ContainableItem _skittlesItem;
+        private ProductBand _skittlesBand;
+        private Dispenser _dispenser;
 
         [TestInitialize]
         public void InitializeConstructors()
         {
-            skittlesItem = ProductFactory.CreateSkittlesProduct();
-            skittlesBand = new ProductBand();
-            dispenser = new Dispenser();
+            _skittlesItem = ProductFactory.CreateSkittlesProduct();
+            _skittlesBand = ProductBand.Instance;
+            _dispenser = new Dispenser();
+        }
+
+        [TestCleanup]
+        public void CleanupProductBand()
+        {
+            foreach (var product in _skittlesBand.Products)
+                _skittlesBand.Remove(product);
         }
 
         [TestMethod]
         public void Dispense_DispeneseOneProductBandHasTwoItems_CountReturnOne()
         {
-            skittlesBand.Add(skittlesItem);
-            skittlesBand.Add(skittlesItem);
-            
-            dispenser.Dispense(skittlesItem);
+            _skittlesBand.Add(_skittlesItem);
+            _skittlesBand.Add(_skittlesItem);
 
-            Assert.AreEqual(1, skittlesBand.Count());
+            _dispenser.Dispense(_skittlesItem);
+
+            Assert.AreEqual(1, _skittlesBand.Count());
         }
 
         [TestMethod]
-        public void Dispense_DispenseOneProductBandIsEmpty_Failed()
+        public void Dispense_DispenseOneProductBandIsEmpty_ThrowBandIsEmptyException()
         {
-            
-
-            Assert.ThrowsException<BandIsEmptyException>(() => dispenser.Dispense(skittlesItem));
+            Assert.ThrowsException<BandIsEmptyException>(() => _dispenser.Dispense(_skittlesItem));
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace VendingMachine.Project
+﻿namespace VendingMachine.Project.Interfaces
 {
     public interface IPayment
     {
         decimal Amount { get; set; }
-        decimal GetChange();
+        bool IsChangeable { get; }
     }
 }

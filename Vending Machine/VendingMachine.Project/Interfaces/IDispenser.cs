@@ -1,4 +1,6 @@
-﻿namespace VendingMachine.Project
+﻿using VendingMachine.Project.ProductsLogic;
+
+namespace VendingMachine.Project.Interfaces
 {
     public interface IDispenser
     {

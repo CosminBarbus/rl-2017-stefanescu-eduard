@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VendingMachine.Project;
+using VendingMachine.Project.ProductsLogic;
 
 namespace VendingMachine.ConsoleUI
 {

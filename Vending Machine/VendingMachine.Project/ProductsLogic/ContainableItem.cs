@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Project
+﻿namespace VendingMachine.Project.ProductsLogic
 {
     public class ContainableItem
     {

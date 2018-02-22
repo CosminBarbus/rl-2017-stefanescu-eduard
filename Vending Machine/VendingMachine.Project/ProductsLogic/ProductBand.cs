@@ -60,6 +60,8 @@ namespace VendingMachine.Project.ProductsLogic
             throw new BandIsEmptyException("get");
         }
 
+        public int Count() => _products.Count;
+
         public ContainableItem GetByName(string productName)
         {
             foreach (var containableItem in _products)
@@ -68,8 +70,6 @@ namespace VendingMachine.Project.ProductsLogic
 
             throw new ProductNotFoundException();
         }
-
-        public int Count() => _products.Count;
 
         public int BandSize => _bandSize;
 

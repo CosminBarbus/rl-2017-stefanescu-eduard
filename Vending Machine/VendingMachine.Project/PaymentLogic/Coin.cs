@@ -1,6 +1,4 @@
-﻿using VendingMachine.Project.Interfaces;
-
-namespace VendingMachine.Project.PaymentLogic
+﻿namespace VendingMachine.Project.PaymentLogic
 {
     public abstract class Coin : IPayment
     {

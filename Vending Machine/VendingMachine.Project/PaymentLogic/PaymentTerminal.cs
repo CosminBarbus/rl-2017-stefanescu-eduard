@@ -7,7 +7,7 @@ using VendingMachine.Project.ReportsLogic;
 
 namespace VendingMachine.Project.PaymentLogic
 {
-    public partial class PaymentTerminal
+    public class PaymentTerminal
     {
         private readonly IList<IDispenser> _dispensers;
         private readonly InternalAccountant _internalAccountant;
@@ -18,9 +18,9 @@ namespace VendingMachine.Project.PaymentLogic
             _internalAccountant = new InternalAccountant();
         }
 
-        public void Subscribe(IDispenser iDispenser)
+        public void Subscribe(IDispenser dispenser)
         {
-            _dispensers.Add(iDispenser);
+            _dispensers.Add(dispenser);
         }
 
         public void Unsubscribe(IDispenser iDispenser)
@@ -45,8 +45,7 @@ namespace VendingMachine.Project.PaymentLogic
             var sale = new Sale(containableItem.Product.Name, containableItem.Product.Price, DateTime.Now);
             SalesDatabase.Instance.AddSale(sale);
             Notify(containableItem);
-            if (payment is CreditCard)
-                payment.Amount -= containableItem.Product.Price;
+            payment.Amount -= containableItem.Product.Price;
 
             return payment.IsChangeable
                 ? _internalAccountant.CalculateChange(containableItem.Product.Price, totalAmount)

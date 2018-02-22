@@ -1,16 +1,15 @@
 ﻿using VendingMachine.Project.Exceptions;
-using VendingMachine.Project.Interfaces;
 
 namespace VendingMachine.Project.PaymentLogic
 {
     public class CreditCard : IPayment
     {
-        private string _creditCreditCardNumber;
+        private readonly string _creditCardNumber;
 
         public CreditCard(string creditCardNumber)
         {
             if (IsCreditCardValid(creditCardNumber))
-                _creditCreditCardNumber = creditCardNumber;
+                _creditCardNumber = creditCardNumber;
             else
                 throw new CardNotValidException();
         }
@@ -36,6 +35,7 @@ namespace VendingMachine.Project.PaymentLogic
                         totalSum += digitMultiplier;
                 }
             }
+
             if (totalSum != 0 && totalSum % 10 == 0)
                 return true;
             return false;
@@ -43,8 +43,8 @@ namespace VendingMachine.Project.PaymentLogic
 
         public decimal Amount
         {
-            get => CreditCardDatabase.Instance.GetAccountBalance(_creditCreditCardNumber);
-            set => CreditCardDatabase.Instance.SetAccountBalance(_creditCreditCardNumber, value);
+            get => CreditCardDatabase.Instance.GetAccountBalance(_creditCardNumber);
+            set => CreditCardDatabase.Instance.SetAccountBalance(_creditCardNumber, value);
         }
 
         public bool IsChangeable => false;

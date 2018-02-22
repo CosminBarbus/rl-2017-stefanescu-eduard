@@ -2,11 +2,9 @@
 {
     public class FiveRon : Banknote
     {
-        private decimal _fiveRon = 5;
-
         public override decimal Amount
         {
-            get => _fiveRon;
+            get => 5;
             set { }
         }
     }

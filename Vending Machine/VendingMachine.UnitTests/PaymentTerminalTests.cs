@@ -31,7 +31,7 @@ namespace VendingMachine.UnitTests
         }
 
         [TestCleanup]
-        public void CleanupProductBand()
+        public void CleanupConstructors()
         {
             foreach (var product in _twixBand.Products)
                 _twixBand.Remove(product);
@@ -40,7 +40,7 @@ namespace VendingMachine.UnitTests
         }
 
         [TestMethod]
-        public void Pay_PayForOneTwixWithOneFiveRonBanknote_Successfully()
+        public void Pay_PayForOneTwixWithFiveRonBanknote_Successfully()
         {
             var fiveRon = new FiveRon();
 
@@ -61,25 +61,36 @@ namespace VendingMachine.UnitTests
         }
 
         [TestMethod]
-        public void Pay_PayForOneTwixWithExactAmountOfMoney_Successfully()
+        public void Pay_PayWithForOneTwixWithBanknote_PayReturnZero()
         {
-            var fiftyBani = new FiftyBani();
+            var fiveRon = new FiveRon();
 
             _twixBand.Add(_twixItem);
-            decimal change = _paymentTerminal.Pay(fiftyBani, 6, "Twix");
+            var change = _paymentTerminal.Pay(fiveRon, 1, "Twix");
 
             Assert.IsTrue(change == 0);
         }
 
         [TestMethod]
-        public void Pay_PayForOneTwixWithCreditCard_Succesfully()
+        public void Pay_PayForOneTwixWithExactAmountOfCoins_Successfully()
         {
-            var masterCard = new CreditCard("5105105105105100");
+            var fiftyBani = new FiftyBani();
 
             _twixBand.Add(_twixItem);
-            decimal change = _paymentTerminal.Pay(masterCard, 1, "Twix");
+            var change = _paymentTerminal.Pay(fiftyBani, 6, "Twix");
 
-            Assert.AreEqual(0, change);
+            Assert.IsTrue(change == 0);
+        }
+
+        [TestMethod]
+        public void Pay_PayWithCoins_PaymentTerminalGiveBackChange()
+        {
+            var tenBani = new TenBani();
+
+            _twixBand.Add(_twixItem);
+            var change = _paymentTerminal.Pay(tenBani, 35, "Twix");
+
+            Assert.IsTrue(change > 0);
         }
 
         [TestMethod]
@@ -90,6 +101,17 @@ namespace VendingMachine.UnitTests
             _twixBand.Add(_twixItem);
 
             Assert.ThrowsException<CardNotFoundException>(() => _paymentTerminal.Pay(creditCard, 1, "Twix"));
+        }
+
+        [TestMethod]
+        public void Pay_PayForOneTwixWithCreditCard_Succesfully()
+        {
+            var masterCard = new CreditCard("5105105105105100");
+
+            _twixBand.Add(_twixItem);
+            _paymentTerminal.Pay(masterCard, 1, "Twix");
+
+            Assert.AreEqual(0, _twixBand.Count());
         }
     }
 }

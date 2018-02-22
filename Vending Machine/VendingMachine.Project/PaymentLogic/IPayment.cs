@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Project.Interfaces
+﻿namespace VendingMachine.Project.PaymentLogic
 {
     public interface IPayment
     {

@@ -4,11 +4,11 @@ namespace VendingMachine.Project.PaymentLogic
 {
     public class CreditCardDatabase
     {
+        private string _creditCreditCardNumber;
         private decimal _creditCardAmount;
-        private readonly string _creditCreditCardNumber;
-        private static CreditCardDatabase _instanceCardDatabase;
+        private static CreditCardDatabase _creditCardDatabase;
         private static CreditCardDatabase[] _creditCards;
-        private static readonly object SynLock = new object();
+        private static readonly object Synlock = new object();
 
         private CreditCardDatabase()
         {
@@ -27,23 +27,23 @@ namespace VendingMachine.Project.PaymentLogic
             };
         }
 
-        public static CreditCardDatabase Instance
-        {
-            get
-            {
-                if (_instanceCardDatabase == null)
-                    lock (SynLock)
-                        if (_instanceCardDatabase == null)
-                            _instanceCardDatabase = new CreditCardDatabase();
-
-                return _instanceCardDatabase;
-            }
-        }
-
         private CreditCardDatabase(string creditCardNumber, decimal creditCardAmount)
         {
             _creditCreditCardNumber = creditCardNumber;
             _creditCardAmount = creditCardAmount;
+        }
+
+        public static CreditCardDatabase Instance
+        {
+            get
+            {
+                if (_creditCardDatabase == null)
+                    lock (Synlock)
+                        if (_creditCardDatabase == null)
+                            _creditCardDatabase = new CreditCardDatabase();
+
+                return _creditCardDatabase;
+            }
         }
 
         public decimal GetAccountBalance(string creditCardNumber)
@@ -57,7 +57,7 @@ namespace VendingMachine.Project.PaymentLogic
 
         public void SetAccountBalance(string creditCardNumber, decimal amount)
         {
-            foreach (CreditCardDatabase creditCard in _creditCards)
+            foreach (var creditCard in _creditCards)
                 if (creditCard._creditCreditCardNumber == creditCardNumber)
                     creditCard._creditCardAmount = amount;
         }

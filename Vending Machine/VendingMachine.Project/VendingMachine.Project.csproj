@@ -72,7 +72,6 @@
     <Compile Include="PaymentLogic\Coin.cs" />
     <Compile Include="PaymentLogic\Coins\FiftyBani.cs" />
     <Compile Include="PaymentLogic\Coins\TenBani.cs" />
-    <Compile Include="PaymentLogic\IOnlinePayment.cs" />
     <Compile Include="ProductsLogic\ContainableItem.cs" />
     <Compile Include="PaymentLogic\CreditCard.cs" />
     <Compile Include="Exceptions\BandIsEmptyException.cs" />

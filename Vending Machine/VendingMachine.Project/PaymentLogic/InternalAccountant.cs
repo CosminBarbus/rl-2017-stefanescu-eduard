@@ -1,5 +1,4 @@
 ﻿using System;
-using VendingMachine.Project.Interfaces;
 using VendingMachine.Project.ProductsLogic;
 
 namespace VendingMachine.Project.PaymentLogic

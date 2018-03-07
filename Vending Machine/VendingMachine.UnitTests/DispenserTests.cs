@@ -32,7 +32,7 @@ namespace VendingMachine.UnitTests
             _skittlesBand.Add(_skittlesItem);
             _skittlesBand.Add(_skittlesItem);
 
-            _dispenser.Dispense(_skittlesItem);
+            _dispenser.OnPay(_skittlesItem);
 
             Assert.AreEqual(1, _skittlesBand.Count());
         }
@@ -40,7 +40,7 @@ namespace VendingMachine.UnitTests
         [TestMethod]
         public void Dispense_DispenseOneProductBandIsEmpty_ThrowBandIsEmptyException()
         {
-            Assert.ThrowsException<BandIsEmptyException>(() => _dispenser.Dispense(_skittlesItem));
+            Assert.ThrowsException<BandIsEmptyException>(() => _dispenser.OnPay(_skittlesItem));
         }
     }
 }

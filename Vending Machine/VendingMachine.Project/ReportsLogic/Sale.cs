@@ -1,19 +1,28 @@
 ﻿using System;
+using VendingMachine.Project.PaymentLogic;
+using VendingMachine.Project.ProductsLogic;
 
 namespace VendingMachine.Project.ReportsLogic
 {
-    public class Sale
+    public class Sale : IPaymentSubscriber
     {
-        private string _productName;
-        private decimal _productPrice;
+        private readonly ContainableItem _containableItem;
         private readonly DateTime _sellingDates;
 
-        public Sale(string productName, decimal productPrice, DateTime sellingDate)
+        public Sale() { }
+
+        private Sale(ContainableItem containableItem)
         {
-            _productName = productName;
-            _productPrice = productPrice;
-            _sellingDates = sellingDate;
+            _containableItem = containableItem;
+            _sellingDates = DateTime.Now;
         }
+
+        public void OnPay(ContainableItem containableItem)
+        {
+            SalesDatabase.Instance.AddSale(new Sale(containableItem));
+        }
+
+        public ContainableItem ContainableItem => _containableItem;
 
         public DateTime SellingDates => _sellingDates;
     }

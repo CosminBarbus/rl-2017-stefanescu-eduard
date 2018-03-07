@@ -80,7 +80,7 @@
     <Compile Include="Exceptions\CardNotValidException.cs" />
     <Compile Include="Exceptions\InsufficientMoneyException.cs" />
     <Compile Include="Exceptions\ReportNotFoundException.cs" />
-    <Compile Include="ProductsLogic\IDispenser.cs" />
+    <Compile Include="PaymentLogic\IPaymentSubscriber.cs" />
     <Compile Include="PaymentLogic\IPayment.cs" />
     <Compile Include="PaymentLogic\InternalAccountant.cs" />
     <Compile Include="PaymentLogic\PaymentTerminal.cs" />

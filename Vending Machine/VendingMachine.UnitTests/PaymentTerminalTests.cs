@@ -57,7 +57,7 @@ namespace VendingMachine.UnitTests
 
             _twixBand.Add(_twixItem);
 
-            Assert.ThrowsException<InsufficientMoneyException>(() => _paymentTerminal.Pay(oneRon, 1, "Twix"));
+            Assert.ThrowsException<InvalidTransaction>(() => _paymentTerminal.Pay(oneRon, 1, "Twix"));
         }
 
         [TestMethod]

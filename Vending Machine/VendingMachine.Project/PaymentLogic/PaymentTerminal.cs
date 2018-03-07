@@ -1,37 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VendingMachine.Project.Exceptions;
-using VendingMachine.Project.Interfaces;
 using VendingMachine.Project.ProductsLogic;
-using VendingMachine.Project.ReportsLogic;
 
 namespace VendingMachine.Project.PaymentLogic
 {
     public class PaymentTerminal
     {
-        private readonly IList<IDispenser> _dispensers;
+        private readonly IList<IPaymentSubscriber> _paymentSubscribers;
         private readonly InternalAccountant _internalAccountant;
 
         public PaymentTerminal()
         {
-            _dispensers = new List<IDispenser>();
+            _paymentSubscribers = new List<IPaymentSubscriber>();
             _internalAccountant = new InternalAccountant();
         }
 
-        public void Subscribe(IDispenser dispenser)
+        public void Subscribe(IPaymentSubscriber paymentSubscriber)
         {
-            _dispensers.Add(dispenser);
+            _paymentSubscribers.Add(paymentSubscriber);
         }
 
-        public void Unsubscribe(IDispenser iDispenser)
+        public void Unsubscribe(IPaymentSubscriber paymentSubscriber)
         {
-            _dispensers.Remove(iDispenser);
+            _paymentSubscribers.Remove(paymentSubscriber);
         }
 
         private void Notify(ContainableItem containableItem)
         {
-            foreach (var dispenser in _dispensers)
-                dispenser.Dispense(containableItem);
+            foreach (var dispenser in _paymentSubscribers)
+                dispenser.OnPay(containableItem);
         }
 
         public decimal Pay(IPayment payment, int numberOfMoney, string productName)
@@ -39,11 +36,9 @@ namespace VendingMachine.Project.PaymentLogic
             var containableItem = ProductBand.Instance.GetByName(productName);
             var totalAmount = _internalAccountant.TotalAmount(payment, numberOfMoney);
 
-            if (!_internalAccountant.IsEnoughMoney(containableItem, totalAmount))
-                throw new InsufficientMoneyException();
+            if (!_internalAccountant.IsEnoughMoney(containableItem, totalAmount) || containableItem == null)
+                throw new InvalidTransaction();
 
-            var sale = new Sale(containableItem.Product.Name, containableItem.Product.Price, DateTime.Now);
-            SalesDatabase.Instance.AddSale(sale);
             Notify(containableItem);
             payment.Amount -= containableItem.Product.Price;
 

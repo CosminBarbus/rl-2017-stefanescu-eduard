@@ -14,5 +14,7 @@ namespace VendingMachine.Project.ReportsLogic
         }
 
         public string ReportName => _reportName;
+
+        public List<Sale> Sales => new List<Sale>(_sales);
     }
 }

@@ -1,10 +1,10 @@
-﻿using VendingMachine.Project.Interfaces;
+﻿using VendingMachine.Project.PaymentLogic;
 
 namespace VendingMachine.Project.ProductsLogic
 {
-    public class Dispenser : IDispenser
+    public class Dispenser : IPaymentSubscriber
     {
-        public void Dispense(ContainableItem containableItem)
+        public void OnPay(ContainableItem containableItem)
         {
             ProductBand.Instance.Remove(containableItem);
         }

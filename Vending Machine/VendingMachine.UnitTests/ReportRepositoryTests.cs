@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using VendingMachine.Project.Exceptions;
+using VendingMachine.Project.PaymentLogic;
+using VendingMachine.Project.PaymentLogic.Banknotes;
+using VendingMachine.Project.ProductsLogic;
 using VendingMachine.Project.ReportsLogic;
 
 namespace VendingMachine.UnitTests
@@ -8,23 +10,41 @@ namespace VendingMachine.UnitTests
     [TestClass]
     public class ReportRepositoryTests
     {
-        private Sale _sale;
-        private SalesDatabase _salesDatabase;
         private ReportRepository _reportRepository;
         private Report _report;
+        private ContainableItem _snickersItem;
+        private ProductBand _snickersBand;
+        private PaymentTerminal _paymentTerminal;
+        private Dispenser _dispenser;
+        private SalesDatabase _salesDatabase;
+        private Sale _sale;
+        private IPayment _fiveRon;
 
         [TestInitialize]
-        public void InitializeConstructors()
+        public void InitializeConstructorsAndMethods()
         {
-            _sale = new Sale("MilkyWay", 2.35m, DateTime.Now);
-            _salesDatabase = SalesDatabase.Instance;
             _reportRepository = new ReportRepository();
+            _snickersItem = ProductFactory.CreateSnickersProduct();
+            _snickersBand = ProductBand.Instance;
+            _dispenser = new Dispenser();
+            _paymentTerminal = new PaymentTerminal();
+            _salesDatabase = SalesDatabase.Instance;
+            _sale = new Sale();
+            _fiveRon = new FiveRon();
+
+            _snickersBand.Add(_snickersItem);
+            _paymentTerminal.Subscribe(_dispenser);
+            _paymentTerminal.Subscribe(_sale);
+
+            _paymentTerminal.Pay(_fiveRon, 1, "Snickers");
             _report = new Report("reportName.csv", _salesDatabase.Sales);
         }
 
         [TestCleanup]
         public void CleanSalesDatabase()
         {
+            foreach (var product in _snickersBand.Products)
+                _snickersBand.Remove(product);
             foreach (var sale in _salesDatabase.Sales)
                 _salesDatabase.RemoveSale(sale);
         }
@@ -46,9 +66,6 @@ namespace VendingMachine.UnitTests
         [TestMethod]
         public void DeleteReport_DeleteOneReportSuccessfully_CountReturnZero()
         {
-            _reportRepository.AddReport(_report);
-            _reportRepository.DeleteReport("reportName.csv");
-
             Assert.AreEqual(0, _reportRepository.Reports.Count);
         }
     }

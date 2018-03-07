@@ -6,19 +6,22 @@ using VendingMachine.Project.ReportsLogic;
 
 namespace VendingMachine.ConsoleUI
 {
-    class Program
+    internal class Program
     {
         static void Main()
         {
             var paymentTerminal = new PaymentTerminal();
             var reportRepository = new ReportRepository();
+            var sale = new Sale();
             try
             {
                 // Vending Machine Out Of Service
                 var pringlesItem = ProductFactory.CreatePringlesProduct();
                 ProductBand.Instance.Add(pringlesItem);
+
                 var dispenser = new Dispenser();
                 paymentTerminal.Subscribe(dispenser);
+                paymentTerminal.Subscribe(sale);
             }
             catch (Exception exception)
             {
@@ -47,11 +50,14 @@ namespace VendingMachine.ConsoleUI
             try
             {
                 // Analyst Created a Report for february month
-                var februaryStartDate = new DateTime(2018, 02, 01);
-                var februaryEndDate = new DateTime(2018, 02, 28);
+                var februaryStartDate = new DateTime(2018, 03, 01);
+                var februaryEndDate = new DateTime(2018, 03, 31);
                 var februarySales = SalesDatabase.Instance.GetSalesByDate(februaryStartDate, februaryEndDate);
-                var report = new Report("FebruaryReport.csv", februarySales);
+                var report = new Report("FebruaryReport", februarySales);
                 reportRepository.AddReport(report);
+                Console.Write("Enter the path, where you want to save the report: ");
+                var path = Console.ReadLine();
+                reportRepository.SaveReport("FebruaryReport", path);
             }
             catch (Exception exception)
             {
